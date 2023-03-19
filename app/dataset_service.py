@@ -4,20 +4,20 @@ from agency_names import agency_names
 
 
 class DatasetService:
-    def load_dataset(self):
+    def load_dataset(self) -> pd.DataFrame:
         # Load CSV data into a Pandas DataFrame
         df = pd.read_csv("data/parking-citations.csv", nrows=1000)
 
         return df
 
-    def clean_dataset(self, df):
+    def clean_dataset(self, df) ->  pd.DataFrame:
         self.join_datetime(df)
         self.fix_plate_expiry_date(df)
         self.fix_lat_lon(df)
 
         return df
 
-    def join_datetime(self, df):
+    def join_datetime(self, df: pd.DataFrame) -> pd.DataFrame:
         # fill missing values in 'Issue time' column with 0
         df['Issue time'].fillna(0, inplace=True)
 
@@ -28,7 +28,7 @@ class DatasetService:
 
         return df
 
-    def fix_plate_expiry_date(self, df):
+    def fix_plate_expiry_date(self, df: pd.DataFrame) ->  pd.DataFrame:
         # convert the Plate Expiry Date column to a datetime object
         df["Plate Expiry Date"] = pd.to_datetime(df["Plate Expiry Date"], format='%Y%m', errors='coerce')
 
@@ -43,7 +43,7 @@ class DatasetService:
 
         return df
 
-    def fix_lat_lon(self, df):
+    def fix_lat_lon(self, df: pd.DataFrame) ->  pd.DataFrame:
         # replace invalid latitude values
         df.loc[df['Latitude'] == 99999.0, 'Latitude'] = None
 
@@ -55,7 +55,7 @@ class DatasetService:
         # df['Longitude'] = df['Longitude'] / 3.2808
         return df
 
-    def add_agency_name(self, df):
+    def add_agency_name(self, df: pd.DataFrame) -> pd.DataFrame:
         df.insert(14, 'Agency Name', df['Agency'].map(agency_names.get))
 
         return df

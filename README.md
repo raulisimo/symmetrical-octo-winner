@@ -4,7 +4,7 @@ This Flask app displays data from a dataset of parking violations in the city of
 Requirements
 To run the app, you need to have Docker installed on your machine and the parking-citations.csv file in the current directory.
 You can download the dataset from: https://www.kaggle.com/datasets/cityofLA/los-angeles-parking-citations?resource=download&select=parking-citations.csv
-Save this file into the data folder
+Create a data folder and save this file into the data folder
 
 In the terminal, navigate to the root directory of the project.
 
