@@ -1,0 +1,11 @@
+.DS_Store
+*.pyc
+*.datastore
+.idea/
+.sass-cache
+.vscode/*git status
+
+/src/lib/
+/venv/
+env/
+data/parking-citations.csv
